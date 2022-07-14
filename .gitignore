@@ -1,0 +1,5 @@
+# VS Files and Directories
+.vs/
+*.user
+bin/
+bin-int/
