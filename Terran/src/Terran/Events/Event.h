@@ -2,9 +2,6 @@
 
 #include "Terran/Core.h"
 
-#include <string>
-#include <functional>
-
 namespace Terran {
 
 	enum class EventType

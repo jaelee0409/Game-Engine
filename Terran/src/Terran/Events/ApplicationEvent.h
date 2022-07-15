@@ -2,8 +2,6 @@
 
 #include "Event.h"
 
-#include <sstream>
-
 namespace Terran {
 
 	class TERRAN_API WindowResizeEvent : public Event

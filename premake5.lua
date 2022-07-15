@@ -10,6 +10,11 @@ workspace "Terran"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["GLFW"] = "Terran/vendor/GLFW/include"
+
+include "Terran/vendor/GLFW"
+
 project "Terran"
 	location "Terran"
 	kind "SharedLib"
@@ -17,6 +22,9 @@ project "Terran"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+
+	pchheader "pch.h"
+	pchsource "Terran/src/pch.cpp"
 
 	files
 	{
@@ -27,7 +35,14 @@ project "Terran"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}"
+	}
+
+	links
+	{
+		"GLFW",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"

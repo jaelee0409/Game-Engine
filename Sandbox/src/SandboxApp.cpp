@@ -1,3 +1,4 @@
+#include "pch.h"
 #include <Terran.h>
 
 class Sandbox : public Terran::Application

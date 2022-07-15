@@ -1,3 +1,6 @@
 [submodule "Terran/vendor/spdlog"]
 	path = Terran/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "Terran/vendor/GLFW"]
+	path = Terran/vendor/GLFW
+	url = https://github.com/TheCherno/glfw
