@@ -63,14 +63,17 @@ project "Terran"
 
 	filter "configurations:Debug"
 		defines "TR_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "TR_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "TR_DIST"
+		buildoptions "/MD"
 		optimize "On"
 
 project "Sandbox"
@@ -110,12 +113,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "TR_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 
 	filter "configurations:Release"
 		defines "TR_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 
 	filter "configurations:Dist"
 		defines "TR_DIST"
+		buildoptions "/MD"
 		optimize "On"
