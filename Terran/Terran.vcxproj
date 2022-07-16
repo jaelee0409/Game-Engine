@@ -152,6 +152,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Terran\LayerStack.h" />
+    <ClInclude Include="src\Terran\Layer.h" />
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\Terran.h" />
     <ClInclude Include="src\Terran\Application.h" />
@@ -166,6 +168,8 @@
     <ClInclude Include="src\pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Terran\LayerStack.cpp" />
+    <ClCompile Include="src\Terran\Layer.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\Terran\Application.cpp" />
     <ClCompile Include="src\Terran\Log.cpp" />

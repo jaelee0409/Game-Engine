@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Terran/Application.h"
+#include "Terran/Layer.h"
 #include "Terran/Log.h"
 
 // Entry Point
