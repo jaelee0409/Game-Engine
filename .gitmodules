@@ -4,3 +4,6 @@
 [submodule "Terran/vendor/GLFW"]
 	path = Terran/vendor/GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "Terran/vendor/imgui"]
+	path = Terran/vendor/imgui
+	url = https://github.com/TheCherno/imgui
