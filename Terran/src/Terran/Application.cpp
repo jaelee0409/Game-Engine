@@ -4,6 +4,7 @@
 #include "Terran/Log.h"
 
 #include <glad/glad.h>
+#include "Input.h"
 
 namespace Terran {
 
@@ -30,7 +31,7 @@ namespace Terran {
 		EventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowCloseEvent>(BIND_EVENT_FN(OnWindowClose));
 
-		TR_CORE_TRACE("{0}", e);
+		//TR_CORE_TRACE("{0}", e);
 
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin(); )
 		{

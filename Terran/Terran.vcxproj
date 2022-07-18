@@ -93,7 +93,7 @@
       <ImportLibrary>..\bin\Debug-windows-x86_64\Terran\Terran.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Terran\Terran.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Terran\Terran.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Terran\Terran.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Debug-windows-x86_64\Terran\Terran.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\Terran\Terran.dll "..\bin\Debug-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\Terran\Terran.dll "..\bin\Debug-windows-x86_64\Sandbox\" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -119,7 +119,7 @@
       <ImportLibrary>..\bin\Release-windows-x86_64\Terran\Terran.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Release-windows-x86_64\Terran\Terran.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Terran\Terran.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Terran\Terran.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Release-windows-x86_64\Terran\Terran.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\Terran\Terran.dll "..\bin\Release-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\Terran\Terran.dll "..\bin\Release-windows-x86_64\Sandbox\" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -145,7 +145,7 @@
       <ImportLibrary>..\bin\Dist-windows-x86_64\Terran\Terran.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Terran\Terran.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Terran\Terran.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Terran\Terran.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
+      <Command>IF EXIST ..\bin\Dist-windows-x86_64\Terran\Terran.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\Terran\Terran.dll "..\bin\Dist-windows-x86_64\Sandbox\" &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\Terran\Terran.dll "..\bin\Dist-windows-x86_64\Sandbox\" &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -160,11 +160,15 @@
     <ClInclude Include="src\Terran\Events\KeyEvent.h" />
     <ClInclude Include="src\Terran\Events\MouseEvent.h" />
     <ClInclude Include="src\Terran\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\Terran\Input.h" />
+    <ClInclude Include="src\Terran\KeyCodes.h" />
     <ClInclude Include="src\Terran\Layer.h" />
     <ClInclude Include="src\Terran\LayerStack.h" />
     <ClInclude Include="src\Terran\Log.h" />
+    <ClInclude Include="src\Terran\MouseButtonCodes.h" />
     <ClInclude Include="src\Terran\Window.h" />
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\OpenGL\ImGuiOpenGLRenderer.cpp" />
@@ -177,6 +181,7 @@
     <ClCompile Include="src\pch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">

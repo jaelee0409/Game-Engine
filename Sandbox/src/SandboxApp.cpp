@@ -12,12 +12,13 @@ public:
 
 	void OnUpdate() override
 	{
-		TR_INFO("ExampleLayer::Update");
+		if (Terran::Input::IsKeyPressed(TR_KEY_TAB))
+			TR_TRACE("Tab key is pressed");
 	}
 
 	void OnEvent(Terran::Event& event) override
 	{
-		TR_TRACE("{0}", event);
+		//TR_TRACE("{0}", event);
 	}
 };
 
