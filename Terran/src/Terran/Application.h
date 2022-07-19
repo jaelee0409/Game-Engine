@@ -10,7 +10,7 @@
 
 namespace Terran {
 
-	class TERRAN_API Application
+	class Application
 	{
 	public:
 		Application();

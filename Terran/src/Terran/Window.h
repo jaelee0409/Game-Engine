@@ -22,7 +22,7 @@ namespace Terran {
 	};
 
 	// Interface representing a desktop system based Window
-	class TERRAN_API Window
+	class Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

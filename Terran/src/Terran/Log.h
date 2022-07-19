@@ -6,7 +6,7 @@
 
 namespace Terran {
 
-	class TERRAN_API Log
+	class Log
 	{
 	public:
 		static void Init();

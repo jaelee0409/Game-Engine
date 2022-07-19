@@ -1,5 +1,6 @@
 #pragma once
 
+#include "pch.h"
 #include "Terran/Core.h"
 
 namespace Terran {
@@ -29,7 +30,7 @@ namespace Terran {
 
 #define EVENT_CLASS_CATEGORY(category) virtual int GetCategoryFlags() const override { return category; }
 
-	class TERRAN_API Event
+	class Event
 	{
 	public:
 		virtual EventType GetEventType() const = 0;

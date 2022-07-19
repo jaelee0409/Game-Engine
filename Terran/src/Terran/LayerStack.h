@@ -7,7 +7,7 @@
 
 namespace Terran {
 
-	class TERRAN_API LayerStack
+	class LayerStack
 	{
 	public:
 		LayerStack();

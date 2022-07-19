@@ -1,11 +1,15 @@
 #pragma once
 
 #ifdef TR_PLATFORM_WINDOWS
+#if TR_DYNAMIC_LINK
 	#ifdef TR_BUILD_DLL
-		#define TERRAN_API __declspec(dllexport)
+		#define __declspec(dllexport)
 	#else
-		#define TERRAN_API __declspec(dllimport)
+		#define __declspec(dllimport)
 	#endif
+#else
+	#define TERRAN_API
+#endif
 #else
 	#error Terran only supports Windows
 #endif
