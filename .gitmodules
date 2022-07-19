@@ -7,3 +7,6 @@
 [submodule "Terran/vendor/imgui"]
 	path = Terran/vendor/imgui
 	url = https://github.com/TheCherno/imgui
+[submodule "Terran/vendor/glm"]
+	path = Terran/vendor/glm
+	url = https://github.com/g-truc/glm

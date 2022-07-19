@@ -6,6 +6,8 @@
 #include "Terran/Events/ApplicationEvent.h"
 #include "Terran/LayerStack.h"
 
+#include "Terran/ImGui/ImGuiLayer.h"
+
 namespace Terran {
 
 	class TERRAN_API Application
@@ -25,7 +27,10 @@ namespace Terran {
 		inline Window& GetWindow() { return *m_Window; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
+
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 		static Application* s_Instance;

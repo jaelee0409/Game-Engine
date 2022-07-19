@@ -7,7 +7,6 @@ public:
 	ExampleLayer()
 		: Layer("Example")
 	{
-
 	}
 
 	void OnUpdate() override
@@ -28,7 +27,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new Terran::ImGuiLayer());
 	}
 
 	~Sandbox()
