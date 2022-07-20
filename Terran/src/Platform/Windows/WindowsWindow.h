@@ -1,8 +1,10 @@
 #pragma once
 
 #include "Terran/Window.h"
+#include "Terran/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>
+
 
 namespace Terran {
 
@@ -27,6 +29,7 @@ namespace Terran {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 
 		struct WindowData
 		{
