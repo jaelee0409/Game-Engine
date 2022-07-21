@@ -17,6 +17,11 @@ namespace Terran {
 		glfwMakeContextCurrent(m_WindowHandle);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		TR_CORE_ASSERT(status, "Failed to initialize Glad");
+
+		TR_CORE_INFO("OpenGL Info:");
+		TR_CORE_INFO("  Vendor: {0}", glGetString(GL_VENDOR));
+		TR_CORE_INFO("  Renderer: {0}", glGetString(GL_RENDERER));
+		TR_CORE_INFO("  Version: {0}", glGetString(GL_VERSION));
 	}
 
 	void OpenGLContext::SwapBuffers()
