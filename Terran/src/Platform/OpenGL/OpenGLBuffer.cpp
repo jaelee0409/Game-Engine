@@ -19,12 +19,12 @@ namespace Terran {
 		glDeleteBuffers(1, &m_RendererID);
 	}
 
-	void Terran::OpenGLVertexBuffer::Bind() const
+	void OpenGLVertexBuffer::Bind() const
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, m_RendererID);
 	}
 
-	void Terran::OpenGLVertexBuffer::Unbind() const
+	void OpenGLVertexBuffer::Unbind() const
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 	}

@@ -5,7 +5,7 @@
 
 namespace Terran {
 
-	Terran::Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc)
+	Shader::Shader(const std::string& vertexSrc, const std::string& fragmentSrc)
 		: m_RendererID(0)
 	{
 		// Create an empty vertex shader handle
@@ -113,17 +113,17 @@ namespace Terran {
 		glDetachShader(program, fragmentShader);
 	}
 
-	Terran::Shader::~Shader()
+	Shader::~Shader()
 	{
 		glDeleteProgram(m_RendererID);
 	}
 
-	void Terran::Shader::Bind() const
+	void Shader::Bind() const
 	{
 		glUseProgram(m_RendererID);
 	}
 
-	void Terran::Shader::Unbind() const
+	void Shader::Unbind() const
 	{
 		glUseProgram(0);
 	}
