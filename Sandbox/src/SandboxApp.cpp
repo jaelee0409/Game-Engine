@@ -131,22 +131,22 @@ public:
         m_Shader2.reset(new Terran::Shader(vertexSrc2, fragmentSrc2));
 	}
 
-	void OnUpdate() override
+	void OnUpdate(Terran::Timestep timestep) override
 	{
         if (Terran::Input::IsKeyPressed(TR_KEY_LEFT))
-                m_CameraPosition.x -= m_CameraMoveSpeed;
+                m_CameraPosition.x -= m_CameraMoveSpeed * timestep;
         else if (Terran::Input::IsKeyPressed(TR_KEY_RIGHT))
-            m_CameraPosition.x += m_CameraMoveSpeed;
+            m_CameraPosition.x += m_CameraMoveSpeed * timestep;
 
         if (Terran::Input::IsKeyPressed(TR_KEY_DOWN))
-            m_CameraPosition.y -= m_CameraMoveSpeed;
+            m_CameraPosition.y -= m_CameraMoveSpeed * timestep;
         else if (Terran::Input::IsKeyPressed(TR_KEY_UP))
-            m_CameraPosition.y += m_CameraMoveSpeed;
+            m_CameraPosition.y += m_CameraMoveSpeed * timestep;
 
         if (Terran::Input::IsKeyPressed(TR_KEY_Q))
-            m_CameraRotation += m_CameraRotationSpeed;
+            m_CameraRotation += m_CameraRotationSpeed * timestep;
         else if (Terran::Input::IsKeyPressed(TR_KEY_E))
-            m_CameraRotation -= m_CameraRotationSpeed;
+            m_CameraRotation -= m_CameraRotationSpeed * timestep;
 
 		Terran::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
 		Terran::RenderCommand::Clear();
@@ -169,26 +169,8 @@ public:
 
 	void OnEvent(Terran::Event& event) override
 	{
-        Terran::EventDispatcher dispatcher(event);
-        dispatcher.Dispatch<Terran::KeyPressedEvent>(TR_BIND_EVENT_FN(ExampleLayer::OnKeyPressedEvent));
 	}
 
-    bool OnKeyPressedEvent(Terran::KeyPressedEvent& event)
-    {
-        if (event.GetKeyCode() == TR_KEY_LEFT)
-            m_CameraPosition.x -= m_CameraMoveSpeed;
-
-        if (event.GetKeyCode() == TR_KEY_RIGHT)
-            m_CameraPosition.x += m_CameraMoveSpeed;
-
-        if (event.GetKeyCode() == TR_KEY_DOWN)
-            m_CameraPosition.y -= m_CameraMoveSpeed;
-
-        if (event.GetKeyCode() == TR_KEY_UP)
-            m_CameraPosition.y += m_CameraMoveSpeed;
-
-        return false;
-    }
 private:
 	std::shared_ptr<Terran::Shader> m_Shader;
 	std::shared_ptr<Terran::VertexArray> m_VertexArray;
@@ -198,9 +180,9 @@ private:
 
 	Terran::OrthographicCamera m_Camera;
     glm::vec3 m_CameraPosition;
-    float m_CameraMoveSpeed = 0.1f;
+    float m_CameraMoveSpeed = 3.0f;
     float m_CameraRotation = 0.0f;
-    float m_CameraRotationSpeed = 2.0f;
+    float m_CameraRotationSpeed = 90.0f;
 };
 
 class Sandbox : public Terran::Application

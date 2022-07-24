@@ -170,6 +170,7 @@
     <ClInclude Include="src\Terran\Renderer\Shader.h" />
     <ClInclude Include="src\Terran\Window.h" />
     <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\Terran\Core\Timestep.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -610,6 +611,7 @@
     <ClCompile Include="src\Terran\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Terran\Renderer\Shader.cpp" />
     <ClCompile Include="src\Terran\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Terran\Core\Timestep.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
