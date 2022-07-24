@@ -8,12 +8,6 @@
 
 #include "Terran/ImGui/ImGuiLayer.h"
 
-#include "Terran/Renderer/Shader.h"
-#include "Terran/Renderer/Buffer.h"
-#include "Terran/Renderer/VertexArray.h"
-
-#include "Terran/Renderer/OrthographicCamera.h"
-
 namespace Terran {
 
 	class Application
@@ -39,14 +33,6 @@ namespace Terran {
 
 		bool m_Running = true;
 		LayerStack m_LayerStack;
-
-		std::shared_ptr<Shader> m_Shader;
-		std::shared_ptr<VertexArray> m_VertexArray;
-
-		std::shared_ptr<Shader> m_Shader2;
-		std::shared_ptr<VertexArray> m_SquareVertexArray;
-
-		OrthographicCamera m_Camera;
 
 		static Application* s_Instance;
 	};
