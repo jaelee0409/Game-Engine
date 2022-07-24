@@ -12,6 +12,8 @@
 #include "Terran/Renderer/Buffer.h"
 #include "Terran/Renderer/VertexArray.h"
 
+#include "Terran/Renderer/OrthographicCamera.h"
+
 namespace Terran {
 
 	class Application
@@ -43,6 +45,8 @@ namespace Terran {
 
 		std::shared_ptr<Shader> m_Shader2;
 		std::shared_ptr<VertexArray> m_SquareVertexArray;
+
+		OrthographicCamera m_Camera;
 
 		static Application* s_Instance;
 	};
