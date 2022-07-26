@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "Terran/vendor/GLFW/include"
 IncludeDir["Glad"] = "Terran/vendor/Glad/include"
 IncludeDir["ImGui"] = "Terran/vendor/imgui"
 IncludeDir["glm"] = "Terran/vendor/glm"
+IncludeDir["stb_image"] = "Terran/vendor/stb_image"
 
 include "Terran/vendor/GLFW"
 include "Terran/vendor/Glad"
@@ -39,6 +40,8 @@ project "Terran"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -55,7 +58,8 @@ project "Terran"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links

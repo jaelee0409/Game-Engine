@@ -15,7 +15,13 @@
 // Renderer
 #include "Terran/Renderer/Renderer.h"
 #include "Terran/Renderer/RenderCommand.h"
+
 #include "Terran/Renderer/Buffer.h"
+#include "Terran/Renderer/Shader.h"
+#include "Terran/Renderer/Texture.h"
+#include "Terran/Renderer/VertexArray.h"
+
+#include "Terran/Renderer/OrthographicCamera.h"
 
 // Entry Point
 #include "Terran/EntryPoint.h"
