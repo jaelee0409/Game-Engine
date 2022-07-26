@@ -113,6 +113,7 @@ project "Sandbox"
 	{
 		"Terran/vendor/spdlog/include",
 		"Terran/src",
+		"Terran/vendor",
 		"%{IncludeDir.glm}"
 	}
 
