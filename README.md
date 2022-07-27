@@ -1,2 +1,2 @@
 # Terran
-The Cherno's Hazel Game Engine Clone
+Learning the Architecture of Game Engine by cloning The Cherno's Hazel Game Engine
