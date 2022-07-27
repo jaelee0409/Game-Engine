@@ -140,43 +140,10 @@ public:
         )";
 
         m_Shader2.reset(Terran::Shader::Create(vertexSrc2, fragmentSrc2));
-
-        std::string textureShaderVertexSrc = R"(
-            #version 330 core
-
-            layout(location = 0) in vec3 a_Position;
-            layout(location = 1) in vec2 a_TextureCoord;
-
-            uniform mat4 u_ViewProjection;
-            uniform mat4 u_Transform;
-
-            out vec2 v_TextureCoord;
-
-            void main()
-            {
-                v_TextureCoord = a_TextureCoord;
-                gl_Position = u_ViewProjection * u_Transform * vec4(a_Position, 1.0);
-            }
-        )";
-
-        std::string textureShaderFragmentSrc = R"(
-            #version 330 core
-
-            layout(location = 0) out vec4 color;
-
-            in vec2 v_TextureCoord;
-
-            uniform sampler2D u_Texture;
-
-            void main()
-            {
-                color = texture(u_Texture, v_TextureCoord);
-            }
-        )";
-
-        m_TextureShader.reset(Terran::Shader::Create(textureShaderVertexSrc, textureShaderFragmentSrc));
+        m_TextureShader.reset(Terran::Shader::Create("assets/shaders/Texture.glsl"));
 
         m_Texture = Terran::Texture2D::Create("assets/textures/Checkerboard.png");
+        m_ExampleTexture = Terran::Texture2D::Create("assets/textures/Example.png");
         std::dynamic_pointer_cast<Terran::OpenGLShader>(m_TextureShader)->Bind();
         std::dynamic_pointer_cast<Terran::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
     }
@@ -224,6 +191,8 @@ public:
         m_Texture->Bind();
         Terran::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
+        m_ExampleTexture->Bind();
+        Terran::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
         //Terran::Renderer::Submit(m_Shader, m_VertexArray);
 
         Terran::Renderer::EndScene();
@@ -247,7 +216,7 @@ private:
     Terran::Ref<Terran::Shader> m_Shader2, m_TextureShader;
     Terran::Ref<Terran::VertexArray> m_SquareVertexArray;
 
-    Terran::Ref<Terran::Texture2D> m_Texture;
+    Terran::Ref<Terran::Texture2D> m_Texture, m_ExampleTexture;
 
     Terran::OrthographicCamera m_Camera;
 

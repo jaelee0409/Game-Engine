@@ -3,11 +3,15 @@
 #include "Terran/Renderer/Shader.h"
 #include <glm/glm.hpp>
 
+// TODO
+typedef unsigned int GLenum;
+
 namespace Terran {
 
 	class OpenGLShader : public Shader
 	{
 	public:
+		OpenGLShader(const std::string& filePath);
 		OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc);
 		~OpenGLShader();
 
@@ -24,6 +28,10 @@ namespace Terran {
 		void UploadUniformInt2(const std::string& name, const glm::vec4& value);
 		void UploadUniformInt3(const std::string& name, const glm::vec4& value);
 		void UploadUniformInt4(const std::string& name, const glm::vec4& value);
+	private:
+		std::string ReadFile(const std::string& filePath);
+		std::unordered_map<GLenum, std::string> Preprocess(const std::string& source);
+		void Compile(std::unordered_map<GLenum, std::string>& shaderSources);
 	private:
 		uint32_t m_RendererID;
 	};
