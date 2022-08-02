@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Terran/Input.h"
+#include "Terran/Core/Input.h"
 
 namespace Terran {
 

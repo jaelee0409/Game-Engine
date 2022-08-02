@@ -2,7 +2,7 @@
 
 #include "pch.h"
 
-#include "Terran/Core.h"
+#include "Terran/Core/Core.h"
 #include "Terran/Events/Event.h"
 
 namespace Terran {

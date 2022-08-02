@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Terran/Window.h"
+#include "Terran/Core/Window.h"
 #include "Terran/Renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

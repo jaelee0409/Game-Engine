@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Terran/Core.h"
+#include "Terran/Core/Core.h"
 #include "Layer.h"
 
 #include <vector>

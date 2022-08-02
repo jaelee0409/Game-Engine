@@ -1,7 +1,7 @@
 #include "pch.h"
 #include "WindowsInput.h"
 
-#include "Terran/Application.h"
+#include "Terran/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace Terran {

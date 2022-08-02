@@ -1,4 +1,6 @@
 #include <Terran.h>
+// Entry Point
+#include "Terran/Core/EntryPoint.h"
 
 #include <Platform/OpenGL/OpenGLShader.h>
 
@@ -7,13 +9,15 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include "Sandbox2D.h"
+
 class ExampleLayer : public Terran::Layer
 {
 public:
     ExampleLayer()
-        : Layer("Example"), m_Camera(-1.6f, 1.6f, -0.9f, 0.9f), m_CameraPosition(0.0f)
+        : Layer("Example"), m_CameraController(1280.0f / 720.0f)
     {
-        m_VertexArray.reset(Terran::VertexArray::Create());
+        m_VertexArray = Terran::VertexArray::Create();
 
         float vertices[3 * 7] = {
             -0.5f, -0.5f, 0.0f, 0.8f, 0.0f, 0.8f, 1.0f,
@@ -44,7 +48,7 @@ public:
 
 
 
-        m_SquareVertexArray.reset(Terran::VertexArray::Create());
+        m_SquareVertexArray = Terran::VertexArray::Create();
 
         float squareVertices[5 * 4] = {
             -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -105,7 +109,7 @@ public:
             }
         )";
 
-        m_Shader.reset(Terran::Shader::Create(vertexSrc, fragmentSrc));
+        m_Shader = Terran::Shader::Create("FlatColorTriangleShader", vertexSrc, fragmentSrc);
 
         std::string vertexSrc2 = R"(
             #version 330 core
@@ -139,39 +143,24 @@ public:
             }
         )";
 
-        m_Shader2.reset(Terran::Shader::Create(vertexSrc2, fragmentSrc2));
-        m_TextureShader.reset(Terran::Shader::Create("assets/shaders/Texture.glsl"));
+        m_Shader2 = Terran::Shader::Create("FlatColorSquareShader", vertexSrc2, fragmentSrc2);
+        auto textureShader = m_ShaderLibrary.Load("assets/shaders/Texture.glsl");
 
         m_Texture = Terran::Texture2D::Create("assets/textures/Checkerboard.png");
         m_ExampleTexture = Terran::Texture2D::Create("assets/textures/Example.png");
-        std::dynamic_pointer_cast<Terran::OpenGLShader>(m_TextureShader)->Bind();
-        std::dynamic_pointer_cast<Terran::OpenGLShader>(m_TextureShader)->UploadUniformInt("u_Texture", 0);
+
+        std::dynamic_pointer_cast<Terran::OpenGLShader>(textureShader)->Bind();
+        std::dynamic_pointer_cast<Terran::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
     }
 
     void OnUpdate(Terran::Timestep timestep) override
     {
-        if (Terran::Input::IsKeyPressed(TR_KEY_LEFT))
-                m_CameraPosition.x -= m_CameraMoveSpeed * timestep;
-        else if (Terran::Input::IsKeyPressed(TR_KEY_RIGHT))
-            m_CameraPosition.x += m_CameraMoveSpeed * timestep;
-
-        if (Terran::Input::IsKeyPressed(TR_KEY_DOWN))
-            m_CameraPosition.y -= m_CameraMoveSpeed * timestep;
-        else if (Terran::Input::IsKeyPressed(TR_KEY_UP))
-            m_CameraPosition.y += m_CameraMoveSpeed * timestep;
-
-        if (Terran::Input::IsKeyPressed(TR_KEY_Q))
-            m_CameraRotation += m_CameraRotationSpeed * timestep;
-        else if (Terran::Input::IsKeyPressed(TR_KEY_E))
-            m_CameraRotation -= m_CameraRotationSpeed * timestep;
+        m_CameraController.OnUpdate(timestep);
 
         Terran::RenderCommand::SetClearColor({ 0.1f, 0.1f, 0.1f, 1 });
         Terran::RenderCommand::Clear();
 
-        m_Camera.SetPosition(m_CameraPosition);
-        m_Camera.SetRotation(m_CameraRotation);
-
-        Terran::Renderer::BeginScene(m_Camera);
+        Terran::Renderer::BeginScene(m_CameraController.GetCamera());
 
         glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
@@ -188,14 +177,21 @@ public:
             }
         }
 
+        auto textureShader = m_ShaderLibrary.Get("Texture");
+
         m_Texture->Bind();
-        Terran::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+        Terran::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
         m_ExampleTexture->Bind();
-        Terran::Renderer::Submit(m_TextureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+        Terran::Renderer::Submit(textureShader, m_SquareVertexArray, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
         //Terran::Renderer::Submit(m_Shader, m_VertexArray);
 
         Terran::Renderer::EndScene();
+    }
+
+    void OnEvent(Terran::Event& e) override
+    {
+        m_CameraController.OnEvent(e);
     }
 
     virtual void OnImGuiRender() override
@@ -205,26 +201,17 @@ public:
         ImGui::End();
     }
 
-    void OnEvent(Terran::Event& event) override
-    {
-    }
-
 private:
+    Terran::ShaderLibrary m_ShaderLibrary;
     Terran::Ref<Terran::Shader> m_Shader;
     Terran::Ref<Terran::VertexArray> m_VertexArray;
 
-    Terran::Ref<Terran::Shader> m_Shader2, m_TextureShader;
+    Terran::Ref<Terran::Shader> m_Shader2;
     Terran::Ref<Terran::VertexArray> m_SquareVertexArray;
 
     Terran::Ref<Terran::Texture2D> m_Texture, m_ExampleTexture;
 
-    Terran::OrthographicCamera m_Camera;
-
-    glm::vec3 m_CameraPosition;
-    float m_CameraMoveSpeed = 3.0f;
-
-    float m_CameraRotation = 0.0f;
-    float m_CameraRotationSpeed = 90.0f;
+    Terran::OrthographicCameraController m_CameraController;
 
     glm::vec3 m_SquareColor = { 0.2f, 0.3f, 0.8f };
 };
@@ -234,7 +221,8 @@ class Sandbox : public Terran::Application
 public:
     Sandbox()
     {
-        PushLayer(new ExampleLayer());
+        //PushLayer(new ExampleLayer());
+        PushLayer(new Sandbox2D());
     }
 
     ~Sandbox()

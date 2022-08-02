@@ -1,7 +1,7 @@
 #pragma once
 
 #include "pch.h"
-#include "Terran/Core.h"
+#include "Terran/Core/Core.h"
 
 namespace Terran {
 

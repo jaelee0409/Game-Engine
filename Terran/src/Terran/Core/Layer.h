@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Terran/Core.h"
+#include "Terran/Core/Core.h"
 #include "Terran/Core/Timestep.h"
 #include "Terran/Events/Event.h"
 
@@ -16,7 +16,7 @@ namespace Terran {
 		virtual void OnDetach() {}
 		virtual void OnUpdate(Timestep timestep) {}
 		virtual void OnImGuiRender() {}
-		virtual void OnEvent(Event& event) {}
+		virtual void OnEvent(Event& e) {}
 
 		inline const std::string& GetName() const { return m_DebugName; }
 	protected:

@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "ImGuiLayer.h"
-#include "Terran/Application.h"
+#include "Terran/Core/Application.h"
 
 #include "imgui.h"
 #include "backends/imgui_impl_glfw.h"
@@ -53,15 +53,6 @@ namespace Terran {
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
-	}
-
-	void ImGuiLayer::OnImGuiRender()
-	{
-		static bool show = true;
-		if (show)
-		{
-			ImGui::ShowDemoWindow(&show);
-		}
 	}
 
 	void ImGuiLayer::Begin()

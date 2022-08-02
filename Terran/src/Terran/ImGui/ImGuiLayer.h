@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Terran/Layer.h"
+#include "Terran/Core/Layer.h"
 
 #include "Terran/Events/ApplicationEvent.h"
 #include "Terran/Events/KeyEvent.h"
@@ -16,7 +16,6 @@ namespace Terran {
 
 		virtual void OnAttach() override;
 		virtual void OnDetach() override;
-		virtual void OnImGuiRender() override;
 
 		void Begin();
 		void End();
